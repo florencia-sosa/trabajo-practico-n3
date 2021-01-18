@@ -42,3 +42,7 @@ th {
 .modal-content {
   width: 75%;
 }
+.material-icons{
+  font-size: 21px;
+  color: black;
+}

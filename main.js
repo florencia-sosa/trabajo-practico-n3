@@ -41,12 +41,17 @@ const renderInHtml = () => {
         <td>${user.address}</td>
         <td>${user.phone}</td> 
         <td onclick="deleteUser(${user.userId})"> <i class="material-icons" title="Delete">&#xE872;</i> </td> 
+        <td onclick="modifyUser(${user.userId})"> <i class="material-icons" title="Edit">&#xE254;</i></td> 
     </tr>`)
 
   $('#tableContent').html(html);
 }
 
 const deleteUser = (userId) => {
+  firebase.database().ref('users/' + userId).set(null)
+    .then(() => readUserData());
+}
+const modifyUser = (userId) => {
   firebase.database().ref('users/' + userId).set(null)
     .then(() => readUserData());
 }
@@ -88,5 +93,29 @@ const getFormValues = () => {
     phone
   };
 }
+const validarUsername = () => {
+  const username = document.getElementById('username').value;
+  if (username.length > 50) {
+    alert("Usuario con demasiados carácteres");
+    return false;
+  }
+  return true;
+}
+const validarEmail = () => {
+  const email = document.getElementById('email').value; 
+  {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/.test(valor)) {
+     true
+    }
+    else{
+      
+    }
+
+  }
+  return true;
+}
+
+
+
 
 onInit();
